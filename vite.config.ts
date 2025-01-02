@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
+import VueJsx from "@vitejs/plugin-vue-jsx";
 
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
   console.log(":::::", command, mode, isSsrBuild, isPreview, process.cwd()); // serve development false false D:\code\interview\vue3-dawei
@@ -37,7 +38,9 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       },
       extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"],
     },
-    plugins: [vue()],
+    plugins: [vue(), VueJsx({
+      include: /\.[jt]sx$/
+    })],
     build: {
       target: "modules",
       outDir: "dist",
