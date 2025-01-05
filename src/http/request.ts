@@ -36,10 +36,10 @@ instance.interceptors.response.use(
 );
 
 const client = {
-  get: <T>(url: string, params?: any) => instance.get(url, { params }).then((data: AxiosResponse<IResponse<T>>) => data),
-  post: <T>(url: string, data?: any) => instance.post(url, data).then((data: AxiosResponse<IResponse<T>>) => data),
-  put: <T>(url: string, data?: any) => instance.put(url, data).then((data: AxiosResponse<IResponse<T>>) => data),
-  delete: <T>(url: string, params?: any) => instance.delete(url, { params }).then((data: AxiosResponse<IResponse<T>>) => data),
+  get: <T>(url: string, params?: any) => instance.get(url, { params }).then((data: AxiosResponse<IResponse<T>>) => data.data),
+  post: <T>(url: string, data?: any) => instance.post(url, data).then((data: AxiosResponse<IResponse<T>>) => data.data),
+  put: <T>(url: string, data?: any) => instance.put(url, data).then((data: AxiosResponse<IResponse<T>>) => data.data),
+  delete: <T>(url: string, params?: any) => instance.delete(url, { params }).then((data: AxiosResponse<IResponse<T>>) => data.data),
 };
 
 export default client;
