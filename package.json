@@ -10,8 +10,7 @@
     "lint:eslint": "npx eslint --max-warnings 0",
     "lint:prettier": "npx prettier . --check --write",
     "prepare": "husky",
-    "lint-staged": "npx lint-staged",
-    "lint:commit": "npx commitlint --config commitlint.config.js --color --edit --version"
+    "lint-staged": "npx lint-staged"
   },
   "keywords": [
     "vue3",

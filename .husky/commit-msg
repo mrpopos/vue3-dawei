@@ -1,1 +1,1 @@
-pnpm lint:commit
+npx commitlint --config commitlint.config.js --color --edit --version
