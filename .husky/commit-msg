@@ -1,1 +1,1 @@
-npx commitlint --config commitlint.config.js --color --edit --version
+npx commitlint --color --edit --version
