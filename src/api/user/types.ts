@@ -10,7 +10,7 @@ export interface IUserInfo {
 
 export interface ILoginResponse<T> {
   userInfo: T
-  accessToken: string,
-  refreshToken?: string,
+  accessToken: string
+  refreshToken?: string
   role: string[]
 }

@@ -1,30 +1,30 @@
-import { defineStore } from "pinia";
-import { ILoginResponse, IUserInfo, IUserLogin } from "@/api/user/types";
-import { login } from "@/api/user";
+import { defineStore } from 'pinia'
+import { IUserInfo, IUserLogin } from '@/api/user/types'
+import { login } from '@/api/user'
 
-export const useUserStore = defineStore("user", {
+export const useUserStore = defineStore('user', {
   state: () => {
     return {
       userInfo: {} as IUserInfo,
-    };
+    }
   },
   getters: {},
   actions: {
     setUserInfo(userInfo: IUserInfo) {
-      this.userInfo = userInfo;
+      this.userInfo = userInfo
     },
     clearUserInfo() {
-      this.userInfo = {} as IUserInfo;
+      this.userInfo = {} as IUserInfo
     },
     async login(data: IUserLogin) {
-      const res = await login(data);
-      this.setUserInfo(res.data.userInfo);
-      return res;
+      const res = await login(data)
+      this.setUserInfo(res.data.userInfo)
+      return res
     },
   },
   // 持久化配置
   persist: {
-    key: "userInfo",
+    key: 'userInfo',
     storage: localStorage,
   },
-});
+})

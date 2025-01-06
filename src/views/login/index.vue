@@ -3,12 +3,18 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "@/store/modules/user";
-const userStore = useUserStore();
+import { useUserStore } from '@/store/modules/user'
+import { defineComponent } from 'vue'
 
-console.log("userStore.userInfo", userStore.userInfo);
+defineComponent({
+  name: 'LoginIndex',
+})
+
+const userStore = useUserStore()
+
+console.log('userStore.userInfo', userStore.userInfo)
 userStore.setUserInfo({
-  username: "admin",
-  avatar: "https://avatars.githubusercontent.com/u/10263808?v=4",
-});
+  username: 'admin',
+  avatar: 'https://avatars.githubusercontent.com/u/10263808?v=4',
+})
 </script>
