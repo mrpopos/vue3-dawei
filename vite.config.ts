@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
+import { viteMockServe } from 'vite-plugin-mock'
 
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
   console.log(':::::', command, mode, isSsrBuild, isPreview, process.cwd()) // serve development false false D:\code\interview\vue3-dawei
@@ -20,14 +21,17 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       // cors: true,
       proxy: {
         [env.VITE_APP_API_BASEURL]: {
-          target: env.VITE_APP_API_BASEURL,
+          target: 'http://localhost:9000',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },
         [env.VITE_APP_MOCK_BASEURL]: {
-          target: env.VITE_APP_MOCK_BASEURL,
+          target: 'http://localhost:9000',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
+          rewrite: (path) => {
+            console.log('first', 123456)
+            return path.replace(/^\/mock\/api/, '')
+          },
         },
       },
     },
@@ -42,6 +46,9 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       vue(),
       VueJsx({
         include: /\.[jt]sx$/,
+      }),
+      viteMockServe({
+        mockPath: 'mock',
       }),
     ],
     build: {

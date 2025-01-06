@@ -13,7 +13,10 @@ interface IResponse<T> {
 }
 
 const instance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL:
+    import.meta.env.VITE_APP_MOCK_ENABLE === 'true'
+      ? import.meta.env.VITE_APP_MOCK_BASEURL
+      : import.meta.env.VITE_APP_API_BASEURL,
   timeout: 5000,
 })
 

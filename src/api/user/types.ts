@@ -8,7 +8,7 @@ export interface IUserInfo {
   avatar: string
 }
 
-export interface ILoginResponse<T> {
+export interface ILoginResponse<T = IUserInfo> {
   userInfo: T
   accessToken: string
   refreshToken?: string

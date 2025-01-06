@@ -18,7 +18,8 @@ export const useUserStore = defineStore('user', {
     },
     async login(data: IUserLogin) {
       const res = await login(data)
-      this.setUserInfo(res.data.userInfo)
+      console.log('res', res)
+      this.setUserInfo(res.userInfo)
       return res
     },
   },
