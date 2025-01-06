@@ -7,8 +7,10 @@
     "serve": "vite serve --mode=development",
     "build:prod": "vite build --mode=production",
     "build:test": "vite build --mode=test",
-    "lint:eslint": "npx eslint --max-warnings 0",
-    "lint:prettier": "npx prettier . --check --write"
+    "lint:eslint": "npx eslint --max-warnings 0 --fix",
+    "lint:prettier": "npx prettier . --check --write",
+    "prepare": "husky",
+    "lint-staged": "npx lint-staged"
   },
   "keywords": [
     "vue3",
@@ -35,6 +37,8 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-vue": "^9.32.0",
     "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.19.0",
