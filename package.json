@@ -7,7 +7,7 @@
     "serve": "vite serve --mode=development",
     "build:prod": "vite build --mode=production",
     "build:test": "vite build --mode=test",
-    "lint:eslint": "npx eslint --max-warnings 0 --fix",
+    "lint:eslint": "npx eslint --max-warnings 0",
     "lint:prettier": "npx prettier . --check --write",
     "prepare": "husky",
     "lint-staged": "npx lint-staged"
