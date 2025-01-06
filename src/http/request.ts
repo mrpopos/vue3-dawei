@@ -47,19 +47,19 @@ const client = {
   get: <T>(url: string, params?: unknown) =>
     instance
       .get(url, { params })
-      .then((data: AxiosResponse<IResponse<T>>) => data.data),
+      .then((res: AxiosResponse<IResponse<T>>) => res.data.data),
   post: <T>(url: string, data?: unknown) =>
     instance
       .post(url, data)
-      .then((data: AxiosResponse<IResponse<T>>) => data.data),
+      .then((res: AxiosResponse<IResponse<T>>) => res.data.data),
   put: <T>(url: string, data?: unknown) =>
     instance
       .put(url, data)
-      .then((data: AxiosResponse<IResponse<T>>) => data.data),
+      .then((res: AxiosResponse<IResponse<T>>) => res.data.data),
   delete: <T>(url: string, params?: unknown) =>
     instance
       .delete(url, { params })
-      .then((data: AxiosResponse<IResponse<T>>) => data.data),
+      .then((res: AxiosResponse<IResponse<T>>) => res.data.data),
 }
 
 export default client
