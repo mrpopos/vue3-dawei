@@ -1,4 +1,8 @@
 module.exports = {
+  extends: [
+    'lerna', // prefixed with commitlint-config-*,
+    '@commitlint/config-conventional', // scoped packages are not prefixed
+  ],
   // 提交规则
   rules: {
     // 提交的type必须是以下之一：'fix', 'feat', 'chore', 'docs', 'style', 'refactor', 'perf', 'test'
