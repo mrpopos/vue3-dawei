@@ -11,7 +11,7 @@
     "lint:prettier": "npx prettier . --check --write",
     "prepare": "husky",
     "lint-staged": "npx lint-staged",
-    "lint:commit": "npx commitlint --color --edit --version"
+    "lint:commit": "npx commitlint --config commitlint.config.js --color --edit --version"
   },
   "keywords": [
     "vue3",
