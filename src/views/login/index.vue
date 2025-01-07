@@ -42,8 +42,7 @@ const userStore = useUserStore()
 const router = useRouter()
 
 async function handleLogin() {
-  const res = await userStore.login(userInfo)
-  console.log('res111', res)
+  await userStore.login(userInfo)
   ElMessage.success('登录成功')
   // 跳转到首页
   router.push('/')
