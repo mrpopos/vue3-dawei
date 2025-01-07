@@ -2,6 +2,10 @@ import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import { viteMockServe } from 'vite-plugin-mock'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
   console.log(':::::', command, mode, isSsrBuild, isPreview, process.cwd()) // serve development false false D:\code\interview\vue3-dawei
@@ -49,6 +53,15 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       }),
       viteMockServe({
         mockPath: 'mock',
+      }),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
+      }),
+      ElementPlus({
+        // options
       }),
     ],
     build: {
