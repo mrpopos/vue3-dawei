@@ -20,7 +20,7 @@ const mocks = [
           },
           message: '登录成功',
         }
-      } else if (username === 'editor' && password === 'editor') {
+      } else {
         return {
           code: 200,
           data: {
