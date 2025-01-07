@@ -25,6 +25,7 @@ export const useUserStore = defineStore('user', {
     },
     async login(data: IUserLogin) {
       const res = await login(data)
+      console.log('res', res)
       this.setUserInfo(res.data.userInfo)
       this.setAccessToken(res.data.accessToken)
       return res

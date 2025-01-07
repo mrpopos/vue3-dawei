@@ -32,7 +32,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
     if (response.status >= 200 && response.status < 300) {
-      return response.data
+      return response
     } else {
       return Promise.reject(
         new Error('请求失败：' + getStatusMsg(response.status))
@@ -54,19 +54,19 @@ const client = {
   get: <T>(url: string, params?: unknown) =>
     instance
       .get(url, { params })
-      .then((data: AxiosResponse<BaseResponse<T>>) => data),
+      .then((data: AxiosResponse<BaseResponse<T>>) => data.data),
   post: <T>(url: string, data?: unknown) =>
     instance
       .post(url, data)
-      .then((data: AxiosResponse<BaseResponse<T>>) => data),
+      .then((data: AxiosResponse<BaseResponse<T>>) => data.data),
   put: <T>(url: string, data?: unknown) =>
     instance
       .put(url, data)
-      .then((data: AxiosResponse<BaseResponse<T>>) => data),
+      .then((data: AxiosResponse<BaseResponse<T>>) => data.data),
   delete: <T>(url: string, params?: unknown) =>
     instance
       .delete(url, { params })
-      .then((data: AxiosResponse<BaseResponse<T>>) => data),
+      .then((data: AxiosResponse<BaseResponse<T>>) => data.data),
 }
 
 export default client
