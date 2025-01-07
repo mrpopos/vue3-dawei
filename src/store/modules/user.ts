@@ -5,7 +5,11 @@ import { login } from '@/api/user'
 export const useUserStore = defineStore('user', {
   state: () => {
     return {
-      userInfo: {} as IUserInfo,
+      userInfo: {
+        username: '',
+        avatar: '',
+      } as IUserInfo,
+      accessToken: '',
     }
   },
   getters: {},
@@ -13,13 +17,16 @@ export const useUserStore = defineStore('user', {
     setUserInfo(userInfo: IUserInfo) {
       this.userInfo = userInfo
     },
+    setAccessToken(token: string) {
+      this.accessToken = token
+    },
     clearUserInfo() {
       this.userInfo = {} as IUserInfo
     },
     async login(data: IUserLogin) {
       const res = await login(data)
-      console.log('res', res)
-      this.setUserInfo(res.userInfo)
+      this.setUserInfo(res.data.userInfo)
+      this.setAccessToken(res.data.accessToken)
       return res
     },
   },
@@ -27,5 +34,6 @@ export const useUserStore = defineStore('user', {
   persist: {
     key: 'userInfo',
     storage: localStorage,
+    pick: ['userInfo', 'accessToken'],
   },
 })

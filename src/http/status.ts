@@ -1,9 +1,6 @@
-export function getStatusMsg(status: string | number) {
+export function getStatusMsg(status: number) {
   let msg = ''
   switch (status) {
-    case 200:
-      msg = '请求成功(200)'
-      break
     case 400:
       msg = '请求错误(400)'
       break
@@ -16,9 +13,29 @@ export function getStatusMsg(status: string | number) {
     case 404:
       msg = '请求出错(404)'
       break
-    default:
-      msg = '请求失败，请重试！'
+    case 408:
+      msg = '请求超时(408)'
       break
+    case 500:
+      msg = '服务器错误(500)'
+      break
+    case 501:
+      msg = '服务未实现(501)'
+      break
+    case 502:
+      msg = '网络错误(502)'
+      break
+    case 503:
+      msg = '服务不可用(503)'
+      break
+    case 504:
+      msg = '网络超时(504)'
+      break
+    case 505:
+      msg = 'HTTP版本不受支持(505)'
+      break
+    default:
+      msg = `连接出错(${status})!`
   }
   return msg
 }

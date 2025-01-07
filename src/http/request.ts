@@ -6,7 +6,7 @@ import axios, {
 } from 'axios'
 import { getStatusMsg } from './status'
 
-interface IResponse<T> {
+interface BaseResponse<T> {
   code: number
   data: T
   message: string
@@ -31,15 +31,22 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    return response.data
+    if (response.status >= 200 && response.status < 300) {
+      return response.data
+    } else {
+      return Promise.reject(
+        new Error('请求失败：' + getStatusMsg(response.status))
+      )
+    }
   },
   (error: AxiosError) => {
+    let errorMessage = ''
     if (error.response) {
-      console.log('请求失败：' + getStatusMsg(error.response.status))
+      errorMessage = getStatusMsg(error.response.status)
     } else {
-      console.log('请求失败：' + error.message)
+      errorMessage = '请求失败：' + error.message
     }
-    return Promise.reject(error)
+    return Promise.reject(new Error('请求失败：' + errorMessage))
   }
 )
 
@@ -47,19 +54,19 @@ const client = {
   get: <T>(url: string, params?: unknown) =>
     instance
       .get(url, { params })
-      .then((res: AxiosResponse<IResponse<T>>) => res.data.data),
+      .then((data: AxiosResponse<BaseResponse<T>>) => data),
   post: <T>(url: string, data?: unknown) =>
     instance
       .post(url, data)
-      .then((res: AxiosResponse<IResponse<T>>) => res.data.data),
+      .then((data: AxiosResponse<BaseResponse<T>>) => data),
   put: <T>(url: string, data?: unknown) =>
     instance
       .put(url, data)
-      .then((res: AxiosResponse<IResponse<T>>) => res.data.data),
+      .then((data: AxiosResponse<BaseResponse<T>>) => data),
   delete: <T>(url: string, params?: unknown) =>
     instance
       .delete(url, { params })
-      .then((res: AxiosResponse<IResponse<T>>) => res.data.data),
+      .then((data: AxiosResponse<BaseResponse<T>>) => data),
 }
 
 export default client
