@@ -14,6 +14,16 @@ export default [
   {
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
-  { ignores: ['dist', 'node_modules', 'public', 'types', '*.d.ts', '*.config.js', '*.config.ts'] },
+  {
+    ignores: [
+      'dist',
+      'node_modules',
+      'public',
+      'types',
+      '*.d.ts',
+      '*.config.js',
+      '*.config.ts',
+    ],
+  },
   eslintConfigPrettier,
 ]
