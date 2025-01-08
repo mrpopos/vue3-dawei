@@ -37,3 +37,4 @@ tsconfig.test.json
 tsconfig.web.json
 tsconfig.webworker.json
 tsconfig.esm5.json
+*.d.ts
