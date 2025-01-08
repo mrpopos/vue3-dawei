@@ -9,7 +9,7 @@ const mocks = [
       console.log(username, password)
       if (username === 'admin' && password === '123456') {
         return {
-          code: 200,
+          code: 0,
           data: {
             userInfo: {
               name: 'admin',
@@ -22,7 +22,7 @@ const mocks = [
         }
       } else {
         return {
-          code: 200,
+          code: 0,
           data: {
             userInfo: {
               name: 'editor',
@@ -33,6 +33,33 @@ const mocks = [
           },
           message: '登录成功 editor',
         }
+      }
+    },
+  },
+  {
+    url: '/mock/api/page',
+    method: 'get',
+    response: ({ query }) => {
+      console.log('query', query)
+      return {
+        code: 0,
+        data: {
+          'list|10': [
+            {
+              id: '@guid',
+              username: '@cname',
+              age: '@integer(18, 30)',
+              gender: '@pick(["男", "女"])',
+              avator: '@image(200x200, @color)',
+              email: '@email',
+              phone: '@phone',
+              address: '@city(true)',
+              createAt: '@datetime',
+            },
+          ],
+          total: 33,
+        },
+        message: 'success',
       }
     },
   },

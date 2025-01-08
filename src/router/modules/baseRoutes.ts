@@ -20,6 +20,53 @@ const baseRoutes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: '/system',
+    name: 'System',
+    component: LayoutPage,
+    meta: {
+      title: '系统管理',
+      // icon: 'HomeFilled',
+    },
+    children: [
+      {
+        path: 'user',
+        name: 'User',
+        component: () => import('@/views/user/index.vue'),
+        meta: {
+          title: '用户管理',
+          // icon: 'HomeFilled',
+        },
+      },
+      {
+        path: 'role',
+        name: 'Role',
+        component: () => import('@/views/role/index.vue'),
+        meta: {
+          title: '角色管理',
+          // icon: 'HomeFilled',
+        },
+      },
+      {
+        path: 'menu',
+        name: 'Menu',
+        component: () => import('@/views/menu/index.vue'),
+        meta: {
+          title: '菜单管理',
+          // icon: 'HomeFilled',
+        },
+      },
+      {
+        path: 'permission',
+        name: 'Permission',
+        component: () => import('@/views/permission/index.vue'),
+        meta: {
+          title: '权限管理',
+          // icon: 'HomeFilled',
+        },
+      },
+    ],
+  },
+  {
     path: '/platform',
     name: 'Platform',
     component: LayoutPage,

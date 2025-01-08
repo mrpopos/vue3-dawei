@@ -68,7 +68,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       target: 'modules',
       outDir: 'dist',
       assetsDir: 'assets',
-      sourcemap: false,
+      sourcemap: true,
       rollupOptions: {
         output: {
           chunkFileNames: 'assets/js/[name]-[hash].js',
