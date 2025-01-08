@@ -5,7 +5,7 @@ import {
   RouteRecordRaw,
 } from 'vue-router'
 
-const routes: Array<RouteRecordRaw> = [{ path: '/', redirect: '/home' }]
+const routes: Array<RouteRecordRaw> = []
 
 const modules = import.meta.glob('./modules/*.ts', { eager: true })
 for (const path in modules) {

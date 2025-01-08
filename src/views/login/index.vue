@@ -74,7 +74,7 @@ onMounted(() => {
     .btn-container {
       width: 100%;
       .btn-login {
-        margin: auto;
+        margin: 20px auto 0;
       }
     }
   }
