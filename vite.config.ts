@@ -55,6 +55,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
         mockPath: 'mock',
       }),
       AutoImport({
+        imports: ['vue', 'vue-router'],
         resolvers: [ElementPlusResolver()],
       }),
       Components({
