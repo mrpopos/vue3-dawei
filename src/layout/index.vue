@@ -7,13 +7,26 @@
             <img src="@/assets/images/logo.png" alt="logo" />
           </div>
           <div class="menu">
-            <el-menu default-active="/dashboard/home" class="menu-cpm" router>
-              <el-menu-item index="/dashboard/home">首页</el-menu-item>
-              <el-sub-menu index="/platform">
-                <template #title>平台管理</template>
-                <el-menu-item index="/platform/about">关于我们</el-menu-item>
-                <el-menu-item index="/platform/contact">联系我们</el-menu-item>
-              </el-sub-menu>
+            <el-menu :default-active="urlPath" class="menu-cpm" router>
+              <div class="define-menu" v-for="(item, i) in menuRouter" :key="i">
+                <template v-if="item.children.length === 1">
+                  <el-menu-item
+                    :index="`${item.path}/${item.children[0].path}`"
+                    >{{ item!.children[0]!.meta!.title }}</el-menu-item
+                  >
+                </template>
+                <template v-else>
+                  <el-sub-menu :index="`${item.path}`">
+                    <template #title>{{ item.meta.title }}</template>
+                    <el-menu-item
+                      v-for="(ele, k) in item.children"
+                      :key="k"
+                      :index="`${item.path}/${ele.path}`"
+                      >{{ ele!.meta!.title }}</el-menu-item
+                    >
+                  </el-sub-menu>
+                </template>
+              </div>
             </el-menu>
           </div>
         </el-aside>
@@ -65,11 +78,11 @@
 </template>
 
 <script lang="ts" setup>
-import { RouterView } from 'vue-router'
+import { RouterView, RouteRecord } from 'vue-router'
 import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { Setting } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 defineComponent({
   name: 'LayoutPage',
@@ -77,6 +90,7 @@ defineComponent({
 
 const userStore = useUserStore()
 const router = useRouter()
+const route = useRoute()
 
 const state = reactive({
   circleUrl:
@@ -84,7 +98,8 @@ const state = reactive({
 })
 
 const drawerSetting = ref(false)
-// const menuRouter = ref([])
+const menuRouter = ref<RouteRecord[]>()
+const urlPath = ref(route.path)
 
 function handleLogout() {
   console.log('logout')
@@ -97,14 +112,16 @@ function triggerSetting() {
   drawerSetting.value = true
 }
 
-console.log(router.getRoutes())
+function getMenuData() {
+  menuRouter.value = router
+    .getRoutes()
+    .filter((item) => item.children.length > 0)
 
-// function getMenu() {
-//   menuRouter.value = router.getRoutes().filter((item) => item.name === 'Layout')
-// }
+  console.log(menuRouter.value)
+}
 
 onMounted(() => {
-  // getMenu()
+  getMenuData()
 })
 </script>
 
