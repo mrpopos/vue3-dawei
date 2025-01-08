@@ -1,17 +1,16 @@
 import { defineComponent } from 'vue'
 
-const AboutPage = defineComponent({
-  name: 'AboutPage',
+const ContactPage = defineComponent({
+  name: 'ContactPage',
   props: {},
   setup(props, { attrs, slots }) {
     console.log('props, { attrs, slots }', props, { attrs, slots })
     return () => (
       <div>
-        <h1>Hello, Vite + Vue 3 + TSX!</h1>
-        <h2>every bodies good!</h2>
+        <h1>contact</h1>
       </div>
     )
   },
 })
 
-export default AboutPage
+export default ContactPage

@@ -7,9 +7,13 @@
             <img src="@/assets/images/logo.png" alt="logo" />
           </div>
           <div class="menu">
-            <el-menu default-active="/home" class="menu-cpm" router>
-              <el-menu-item index="/home">Home</el-menu-item>
-              <el-menu-item index="/about">About</el-menu-item>
+            <el-menu default-active="/dashboard/home" class="menu-cpm" router>
+              <el-menu-item index="/dashboard/home">首页</el-menu-item>
+              <el-sub-menu index="/platform">
+                <template #title>平台管理</template>
+                <el-menu-item index="/platform/about">关于我们</el-menu-item>
+                <el-menu-item index="/platform/contact">联系我们</el-menu-item>
+              </el-sub-menu>
             </el-menu>
           </div>
         </el-aside>
@@ -62,7 +66,7 @@
 
 <script lang="ts" setup>
 import { RouterView } from 'vue-router'
-import { defineComponent, reactive, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { Setting } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import { useRouter } from 'vue-router'
@@ -80,6 +84,7 @@ const state = reactive({
 })
 
 const drawerSetting = ref(false)
+// const menuRouter = ref([])
 
 function handleLogout() {
   console.log('logout')
@@ -91,6 +96,16 @@ function handleLogout() {
 function triggerSetting() {
   drawerSetting.value = true
 }
+
+console.log(router.getRoutes())
+
+// function getMenu() {
+//   menuRouter.value = router.getRoutes().filter((item) => item.name === 'Layout')
+// }
+
+onMounted(() => {
+  // getMenu()
+})
 </script>
 
 <style lang="less" scoped>
