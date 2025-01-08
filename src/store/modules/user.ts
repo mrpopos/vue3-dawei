@@ -20,8 +20,11 @@ export const useUserStore = defineStore('user', {
     setAccessToken(token: string) {
       this.accessToken = token
     },
-    clearUserInfo() {
+    removeUserInfo() {
       this.userInfo = {} as IUserInfo
+    },
+    removeAccessToken() {
+      this.accessToken = ''
     },
     async login(data: IUserLogin) {
       const res = await login(data)
@@ -29,6 +32,10 @@ export const useUserStore = defineStore('user', {
       this.setUserInfo(res.data.userInfo)
       this.setAccessToken(res.data.accessToken)
       return res
+    },
+    logout() {
+      this.removeUserInfo()
+      this.removeAccessToken()
     },
   },
   // 持久化配置

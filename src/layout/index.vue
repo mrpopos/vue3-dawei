@@ -31,11 +31,11 @@
                 <el-avatar :size="32" :src="state.circleUrl" />
                 <span class="name">admin</span>
               </div>
-              <div class="settings-icon">
+              <div class="settings-icon" @click="triggerSetting">
                 <el-icon>
                   <Setting :size="32" />
                 </el-icon>
-                <span>Setting</span>
+                <span>setting</span>
               </div>
             </div>
           </el-header>
@@ -46,21 +46,51 @@
       </el-container>
     </div>
   </div>
+
+  <!-- 设置抽屉弹窗 -->
+  <el-drawer v-model="drawerSetting" direction="rtl" :size="300">
+    <template #header>
+      <h4>设置</h4>
+    </template>
+    <template #footer>
+      <div style="flex: auto">
+        <el-button type="primary" @click="handleLogout">退出登录</el-button>
+      </div>
+    </template>
+  </el-drawer>
 </template>
 
 <script lang="ts" setup>
 import { RouterView } from 'vue-router'
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 import { Setting } from '@element-plus/icons-vue'
+import { useUserStore } from '@/store/modules/user'
+import { useRouter } from 'vue-router'
 
 defineComponent({
   name: 'LayoutPage',
 })
 
+const userStore = useUserStore()
+const router = useRouter()
+
 const state = reactive({
   circleUrl:
     'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
 })
+
+const drawerSetting = ref(false)
+
+function handleLogout() {
+  console.log('logout')
+  userStore.logout()
+  // 跳转到登录页面
+  router.push('/login')
+}
+
+function triggerSetting() {
+  drawerSetting.value = true
+}
 </script>
 
 <style lang="less" scoped>
