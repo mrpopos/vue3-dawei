@@ -57,6 +57,12 @@
         @current-change="handleCurrentChange"
       />
     </el-row>
+    <!-- 新增表单 -->
+    <el-form ref="formRef" :model="formData">
+      <el-form-item label="用户名">
+        <el-input v-model="formData.username" />
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
@@ -64,6 +70,8 @@
 import { defineComponent, onMounted, ref, reactive } from 'vue'
 import { page } from '@/api/user'
 import { IUserRecord } from '@/api/user/types'
+import { ElForm } from 'element-plus'
+import { useCpmnRef } from '@/hooks/useCpmnRef'
 
 defineComponent({
   name: 'UserPage',
@@ -75,6 +83,11 @@ const queryParams = reactive({
   pageSize: 10,
 })
 const total = ref<number>()
+const formData = reactive({
+  username: '',
+})
+// const formRef = ref<InstanceType<typeof ElForm>>()
+const formRef = useCpmnRef<typeof ElForm>()
 
 async function getTableData() {
   const res = await page(queryParams)
@@ -94,6 +107,7 @@ function handleCurrentChange(val: number) {
 
 onMounted(() => {
   getTableData()
+  // console.log(formRef.value?.$el)
 })
 </script>
 
