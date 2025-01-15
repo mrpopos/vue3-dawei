@@ -86,7 +86,6 @@ const baseRoutes: RouteRecordRaw[] = [
     meta: {
       title: '平台管理',
       hide: false,
-      pName: 'Platform',
     },
     children: [
       {
