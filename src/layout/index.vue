@@ -35,12 +35,14 @@
             <div class="bread">
               <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/' }"
-                  >homepage</el-breadcrumb-item
+                  >Home</el-breadcrumb-item
                 >
-                <el-breadcrumb-item>
-                  <a href="/">promotion management</a>
-                </el-breadcrumb-item>
-                <el-breadcrumb-item>promotion list</el-breadcrumb-item>
+                <el-breadcrumb-item
+                  v-for="item in appStore.breadcrumb"
+                  :key="item"
+                  :to="item"
+                  >{{ item }}</el-breadcrumb-item
+                >
               </el-breadcrumb>
             </div>
             <div class="settings">
@@ -82,6 +84,7 @@ import { RouterView, RouteRecordRaw } from 'vue-router'
 import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { Setting } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
+import { useAppStore } from '@/store/modules/app'
 import { useRouter, useRoute } from 'vue-router'
 
 defineComponent({
@@ -89,6 +92,7 @@ defineComponent({
 })
 
 const userStore = useUserStore()
+const appStore = useAppStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -117,8 +121,6 @@ function getMenuData() {
   //   .getRoutes()
   //   .filter((item) => item.children.length > 0)
   // console.log(menuRouter.value)
-
-  console.log('first', router.options.routes)
 
   menuRouter.value = router.options.routes.filter(
     (item) => item.meta!.hide !== true

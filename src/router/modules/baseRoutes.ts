@@ -23,6 +23,7 @@ const baseRoutes: RouteRecordRaw[] = [
         meta: {
           title: '首页',
           hide: false,
+          pName: 'Dashboard',
         },
       },
     ],
@@ -43,6 +44,7 @@ const baseRoutes: RouteRecordRaw[] = [
         meta: {
           title: '用户管理',
           hide: false,
+          pName: 'System',
         },
       },
       {
@@ -52,6 +54,7 @@ const baseRoutes: RouteRecordRaw[] = [
         meta: {
           title: '角色管理',
           hide: false,
+          pName: 'System',
         },
       },
       {
@@ -61,6 +64,7 @@ const baseRoutes: RouteRecordRaw[] = [
         meta: {
           title: '菜单管理',
           hide: false,
+          pName: 'System',
         },
       },
       {
@@ -70,6 +74,7 @@ const baseRoutes: RouteRecordRaw[] = [
         meta: {
           title: '权限管理',
           hide: false,
+          pName: 'System',
         },
       },
     ],
@@ -81,6 +86,7 @@ const baseRoutes: RouteRecordRaw[] = [
     meta: {
       title: '平台管理',
       hide: false,
+      pName: 'Platform',
     },
     children: [
       {
@@ -90,6 +96,7 @@ const baseRoutes: RouteRecordRaw[] = [
         meta: {
           title: '关于我们',
           hide: false,
+          pName: 'Platform',
         },
       },
       {
@@ -99,6 +106,7 @@ const baseRoutes: RouteRecordRaw[] = [
         meta: {
           title: '联系我们',
           hide: false,
+          pName: 'Platform',
         },
       },
     ],
