@@ -15,7 +15,6 @@ const routes: Array<RouteRecordRaw> = []
 const modules = import.meta.glob('./modules/*.ts', { eager: true })
 for (const path in modules) {
   const module = modules[path]
-  // console.log('module', module)
   routes.push(...(module.default as RouteRecordRaw[]))
 }
 
@@ -47,7 +46,6 @@ function handleBreadcrumb(toName: string): string[] {
 }
 
 router.beforeEach((to, from, next) => {
-  // console.log('to, from, next', to.path, from.path)
   if (routesWhite.includes(to.path) || useUserStore().accessToken) {
     NProgress.start()
     // 面包屑导航

@@ -8,7 +8,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
-  console.log(':::::', command, mode, isSsrBuild, isPreview, process.cwd()) // serve development false false D:\code\interview\vue3-dawei
+  // console.log(':::::', command, mode, isSsrBuild, isPreview, process.cwd()) // serve development false false D:\code\interview\vue3-dawei
 
   const env = loadEnv(mode, process.cwd(), 'VITE_')
 
@@ -33,7 +33,6 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
           target: 'http://localhost:9000',
           changeOrigin: true,
           rewrite: (path) => {
-            console.log('first', 123456)
             return path.replace(/^\/mock\/api/, '')
           },
         },

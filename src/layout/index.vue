@@ -106,7 +106,6 @@ const menuRouter = ref<RouteRecordRaw[]>()
 const urlPath = ref(route.path)
 
 function handleLogout() {
-  console.log('logout')
   userStore.logout()
   // 跳转到登录页面
   router.push('/login')
@@ -117,11 +116,6 @@ function triggerSetting() {
 }
 
 function getMenuData() {
-  // menuRouter.value = router
-  //   .getRoutes()
-  //   .filter((item) => item.children.length > 0)
-  // console.log(menuRouter.value)
-
   menuRouter.value = router.options.routes.filter(
     (item) => item.meta!.hide !== true
   )

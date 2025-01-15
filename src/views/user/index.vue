@@ -128,7 +128,6 @@ function handleCreate() {
 
 onMounted(() => {
   getTableData()
-  // console.log(formRef.value?.$el)
 })
 </script>
 

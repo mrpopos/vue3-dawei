@@ -6,7 +6,6 @@ const mocks = [
     method: 'post',
     response: ({ body }) => {
       const { username, password } = body
-      console.log(username, password)
       if (username === 'admin' && password === '123456') {
         return {
           code: 0,
@@ -39,8 +38,7 @@ const mocks = [
   {
     url: '/mock/api/page',
     method: 'get',
-    response: ({ query }) => {
-      console.log('query', query)
+    response: () => {
       return {
         code: 0,
         data: {
