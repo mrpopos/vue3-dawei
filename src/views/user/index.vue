@@ -72,7 +72,7 @@
         :background="true"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
-        :page-count="pageCount"
+        :pager-count="5"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
@@ -83,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, onMounted, ref, reactive, computed } from 'vue'
+import { defineComponent, onMounted, ref, reactive } from 'vue'
 import { page } from '@/api/user'
 import { IUserRecord } from '@/api/user/types'
 // import { ElForm } from 'element-plus'
@@ -93,9 +93,6 @@ defineComponent({
   name: 'UserPage',
 })
 
-const pageCount = computed(() => {
-  return Math.ceil(total.value / queryParams.pageSize)
-})
 const tableData = ref<IUserRecord[]>()
 const queryParams = reactive({
   pageNum: 1,
