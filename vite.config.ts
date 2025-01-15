@@ -68,12 +68,29 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       target: 'modules',
       outDir: 'dist',
       assetsDir: 'assets',
-      sourcemap: true,
+      sourcemap: false,
+      chunkSizeWarningLimit: 400,
       rollupOptions: {
         output: {
-          chunkFileNames: 'assets/js/[name]-[hash].js',
-          entryFileNames: 'assets/js/[name]-[hash].js',
-          assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+          // chunkFileNames: 'assets/js/[name]-[hash].js',
+          // entryFileNames: 'assets/js/[name]-[hash].js',
+          // assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+
+          // 使用对象形式时，每个属性代表一个块，其中包含列出的模块及其所有依赖项（如果它们是模块图的一部分，除非它们已经在另一个手动块中）
+          // manualChunks: {
+          //   vue: ['vue', 'vue-router'],
+          //   elementPlus: ['element-plus'],
+          //   mock: ['vite-plugin-mock'],
+          // },
+
+          // 使用函数形式时，每个解析的模块 id 都将传递给函数。如果返回一个字符串，模块及其所有依赖项将添加到具有给定名称的手动块中
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return 'vendor'
+            } else {
+              return 'index'
+            }
+          },
         },
       },
       ssr: false,
