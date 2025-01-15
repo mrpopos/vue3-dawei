@@ -64,10 +64,15 @@
     <!-- 分页 -->
     <el-row justify="space-evenly" class="pagination">
       <el-pagination
-        background
-        layout="sizes, prev, pager, next, jumper"
+        v-model:current-page="queryParams.pageNum"
+        v-model:page-size="queryParams.pageSize"
+        :page-sizes="[5, 10, 30, 50, 100]"
+        size="default"
+        :disabled="false"
+        :background="true"
+        layout="total, sizes, prev, pager, next, jumper"
         :total="total"
-        :page-sizes="[5, 10, 20, 50]"
+        :page-count="pageCount"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
@@ -78,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, onMounted, ref, reactive } from 'vue'
+import { defineComponent, onMounted, ref, reactive, computed } from 'vue'
 import { page } from '@/api/user'
 import { IUserRecord } from '@/api/user/types'
 // import { ElForm } from 'element-plus'
@@ -88,12 +93,15 @@ defineComponent({
   name: 'UserPage',
 })
 
+const pageCount = computed(() => {
+  return Math.ceil(total.value / queryParams.pageSize)
+})
 const tableData = ref<IUserRecord[]>()
 const queryParams = reactive({
   pageNum: 1,
   pageSize: 10,
 })
-const total = ref<number>()
+const total = ref<number>(0)
 const formInline = reactive({
   username: '',
 })
