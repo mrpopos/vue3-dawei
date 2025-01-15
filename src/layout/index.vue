@@ -40,7 +40,7 @@
                 <el-breadcrumb-item
                   v-for="item in appStore.breadcrumb"
                   :key="item"
-                  :to="item"
+                  :to="{ name: item }"
                   >{{ item }}</el-breadcrumb-item
                 >
               </el-breadcrumb>
