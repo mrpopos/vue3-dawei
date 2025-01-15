@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from '@/store/modules/user'
-import { defineComponent, onMounted, reactive } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 
@@ -33,7 +33,7 @@ defineComponent({
   name: 'LoginIndex',
 })
 
-const userInfo = reactive({
+const userInfo = ref({
   username: 'admin',
   password: '123456',
 })
@@ -42,7 +42,7 @@ const userStore = useUserStore()
 const router = useRouter()
 
 async function handleLogin() {
-  await userStore.login(userInfo)
+  await userStore.login(userInfo.value)
   ElMessage.success('登录成功')
   // 跳转到首页
   router.push('/')
