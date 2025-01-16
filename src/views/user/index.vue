@@ -3,11 +3,7 @@
     <!-- search -->
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item label="">
-        <el-input
-          v-model="formInline.username"
-          placeholder="用户名"
-          clearable
-        />
+        <el-input v-model="formInline.username" placeholder="用户" clearable />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleCreate">新增</el-button>

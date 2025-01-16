@@ -6,6 +6,12 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
+// build visualizer
+import { visualizer } from 'rollup-plugin-visualizer'
+// compress
+import { compression } from 'vite-plugin-compression2'
+// brotli
+// import brotli from 'rollup-plugin-brotli'
 
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
   // console.log(':::::', command, mode, isSsrBuild, isPreview, process.cwd()) // serve development false false D:\code\interview\vue3-dawei
@@ -63,6 +69,11 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       ElementPlus({
         // options
       }),
+      visualizer({
+        open: true,
+      }),
+      compression(),
+      // brotli(),
     ],
     build: {
       target: 'modules',
@@ -71,25 +82,27 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       sourcemap: false,
       chunkSizeWarningLimit: 400,
       rollupOptions: {
+        experimentalLogSideEffects: false,
+        treeshake: {
+          preset: 'recommended',
+        },
         output: {
+          experimentalMinChunkSize: 1024 * 20,
           // chunkFileNames: 'assets/js/[name]-[hash].js',
           // entryFileNames: 'assets/js/[name]-[hash].js',
           // assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
-
           // 使用对象形式时，每个属性代表一个块，其中包含列出的模块及其所有依赖项（如果它们是模块图的一部分，除非它们已经在另一个手动块中）
           // manualChunks: {
           //   vue: ['vue', 'vue-router'],
           //   elementPlus: ['element-plus'],
           //   mock: ['vite-plugin-mock'],
           // },
-
           // 使用函数形式时，每个解析的模块 id 都将传递给函数。如果返回一个字符串，模块及其所有依赖项将添加到具有给定名称的手动块中
           manualChunks(id) {
             if (id.includes('node_modules')) {
               return 'vendor'
-            } else {
-              return 'index'
             }
+            return 'index'
           },
         },
       },
