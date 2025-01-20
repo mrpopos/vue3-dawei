@@ -8,8 +8,8 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
 // build visualizer
 import { visualizer } from 'rollup-plugin-visualizer'
-// compress
-import { compression } from 'vite-plugin-compression2'
+// vite-plugin-compression
+import viteCompression from 'vite-plugin-compression'
 // brotli
 // import brotli from 'rollup-plugin-brotli'
 
@@ -72,8 +72,13 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       visualizer({
         open: true,
       }),
-      compression(),
       // brotli(),
+      viteCompression({
+        threshold: 1024 * 20,
+        algorithm: 'brotliCompress',
+        ext: '.br',
+        deleteOriginFile: false,
+      }),
     ],
     build: {
       target: 'modules',
@@ -88,8 +93,8 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
         },
         output: {
           experimentalMinChunkSize: 1024 * 20,
-          // chunkFileNames: 'assets/js/[name]-[hash].js',
-          // entryFileNames: 'assets/js/[name]-[hash].js',
+          // chunkFileNames: 'assets/js/chunk-[hash].js',
+          // entryFileNames: 'assets/js/entry-[hash].js',
           // assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
           // 使用对象形式时，每个属性代表一个块，其中包含列出的模块及其所有依赖项（如果它们是模块图的一部分，除非它们已经在另一个手动块中）
           // manualChunks: {
@@ -102,7 +107,13 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
             if (id.includes('node_modules')) {
               return 'vendor'
             }
-            return 'index'
+            if (id.includes('src/views/user')) {
+              return 'user'
+            }
+            if (id.includes('src/views/role')) {
+              return 'role'
+            }
+            // return 'index'
           },
         },
       },
