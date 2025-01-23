@@ -1,10 +1,12 @@
 <template>
-  <div>PermissionPage</div>
+  <div>profile</div>
 </template>
 
 <script setup lang="ts">
 import { defineComponent } from 'vue'
 defineComponent({
-  name: 'PermissionPage',
+  name: 'ProfileIndex',
 })
 </script>
+
+<style lang="scss" scoped></style>
