@@ -96,9 +96,6 @@ importers:
       lint-staged:
         specifier: ^15.3.0
         version: 15.3.0
-      postcss-px-to-viewport:
-        specifier: ^1.1.1
-        version: 1.1.1
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -2157,9 +2154,6 @@ packages:
 
   postcss-px-to-viewport-8-plugin@1.2.5:
     resolution: {integrity: sha512-+yc69+q/euV7iKh5fGXY6C/lpepmVx2DGFHeYj5BpzIFyBBpdACDjZyrZ8AV0kCg+J0bplBv4ZA1QTzgaK0rGg==}
-
-  postcss-px-to-viewport@1.1.1:
-    resolution: {integrity: sha512-2x9oGnBms+e0cYtBJOZdlwrFg/mLR4P1g2IFu7jYKvnqnH/HLhoKyareW2Q/x4sg0BgklHlP1qeWo2oCyPm8FQ==}
 
   postcss-selector-parser@6.1.2:
     resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
@@ -4770,11 +4764,6 @@ snapshots:
   postcss-px-to-viewport-8-plugin@1.2.5:
     dependencies:
       object-assign: 4.1.1
-
-  postcss-px-to-viewport@1.1.1:
-    dependencies:
-      object-assign: 4.1.1
-      postcss: 8.4.49
 
   postcss-selector-parser@6.1.2:
     dependencies:

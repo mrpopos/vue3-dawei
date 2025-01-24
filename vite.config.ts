@@ -130,9 +130,9 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
           postcsspxtoviewport8plugin({
             unitToConvert: 'px',
             viewportWidth: (file) => {
-              console.log(file)
+              // console.log(file)
               let num = 750
-              if (file.indexOf('node_modules/vant') !== -1) {
+              if (file.indexOf('vant') !== -1) {
                 num = 375
               }
               return num
