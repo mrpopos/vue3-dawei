@@ -53,7 +53,7 @@ router.beforeEach((to, from, next) => {
     useAppStore().setBreadcrumb(breadcrumbData)
     next()
   } else {
-    next('/login')
+    next()
   }
 })
 
