@@ -15,14 +15,14 @@ import viteCompression from 'vite-plugin-compression'
 // import brotli from 'rollup-plugin-brotli'
 import postcsspxtoviewport8plugin from 'postcss-px-to-viewport-8-plugin'
 
-export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
+export default defineConfig(({ mode }) => {
   // console.log(':::::', command, mode, isSsrBuild, isPreview, process.cwd()) // serve development false false D:\code\interview\vue3-dawei
 
   const env = loadEnv(mode, process.cwd(), 'VITE_')
 
   return {
     root: process.cwd(),
-    base: '/',
+    base: mode === 'development' ? '/' : '/vue3-dawei/',
     mode,
     publicDir: 'public',
     cacheDir: 'node_modules/.vite',
